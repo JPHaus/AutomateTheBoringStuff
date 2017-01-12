@@ -1,0 +1,1 @@
+@pyw.exe C:\ Python35\ mcb.pyw %* 
