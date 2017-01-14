@@ -12,7 +12,8 @@ location = ' '.join(sys.argv[1:])
 
 # Download the JSON data from api
 
-url = 'api.openweathermap.org/data/2.5/forecast?q=%s,us&mode=xml' % (location)
+# City ID, Boston: 4317656
+url = 'http://api.openweathermap.org/data/2.5/forecast/city?id=%s&APPID=ef8d04e9627de9c62c1f8868c84cb595' % (location)
 response = requests.get(url)
 response.raise_for_status()
 
@@ -24,7 +25,7 @@ weatherData = json.loads(response.text)
 
 w = weatherData['list']
 print('Current weather in %s:' % (location))
-print(w[0]['weather'][0]]['main'], '-', w[0]['weather'][0]['description'])
+print(w[0]['weather'][0]['main'], '-', w[0]['weather'][0]['description'])
 print()
 print('Day after tomorrow:')
 print(w[1]['weather'][0]['main'], '-', w[1]['weather'][0]['description'])
