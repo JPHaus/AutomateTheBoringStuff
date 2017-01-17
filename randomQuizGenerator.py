@@ -21,4 +21,22 @@ for quizNum in range(35):
     states = list(capitals.keys())
     random.shuffle(states)
 
-    # TODO: Loop through all 50 states, making a question for each.
+    # Loop through all 50 states, making a question for each.
+    for questionNum in range(50):
+        # Get right and wrong answers
+        correctAnswer = capitals[states[questionNum]]
+        wrongAnswers = list(capitals.values())
+        del wrongAnswers[wrongAnswers.index(correctAnswer)]
+        wrongAnswers = random.sample(wrongAnswers, 3)
+        answerOptions = wrongAnswers + [correctAnswer]
+        random.shuffle(answerOptions)
+
+        # Write the question and answer options to the quiz File
+        quizFile.write('%s. What is the capital of %s?\n' % (questionNum + 1, states[questionNum]))
+        for i in range(4):
+            quizFile.write(' %s. %s\n' % ('ABCD'[i], answerOptions[i]))
+            quizFile.write('\n')
+        # Write the answer key to a file.
+        answerKeyFile.write('%s. %s\n' % (questionNum + 1, 'ABCD'[answerOptions.index(correctAnswer)]))
+        quizFile.close()
+        answerKeyFile.close()
