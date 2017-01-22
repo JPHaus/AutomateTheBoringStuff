@@ -12,7 +12,7 @@ location = ' '.join(sys.argv[1:])
 
 # Download the JSON data from api
 
-# City ID, Boston: 4317656
+# City ID, Boston: 4930956
 url = 'http://api.openweathermap.org/data/2.5/forecast/city?id=%s&APPID=' % (location)
 response = requests.get(url)
 response.raise_for_status()
